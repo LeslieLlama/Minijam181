@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4ic0ymc7cxll"]
+[gd_scene load_steps=11 format=4 uid="uid://c4ic0ymc7cxll"]
 
 [ext_resource type="PackedScene" uid="uid://dadpawr3soiud" path="res://Scenes/player_manager.tscn" id="1_crf2g"]
 [ext_resource type="PackedScene" uid="uid://csvck2jupjv5y" path="res://Scenes/kunai.tscn" id="3_crf2g"]
 [ext_resource type="Texture2D" uid="uid://dm1jyd1cnm0tg" path="res://icon.svg" id="3_m0s43"]
 [ext_resource type="PackedScene" uid="uid://cef2gk7n84dlg" path="res://Scenes/hud.tscn" id="4_crf2g"]
+[ext_resource type="Texture2D" uid="uid://d3dtchrlwwg2w" path="res://Sprites/RabbitSpritesheet.png" id="5_evltv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_crf2g"]
 size = Vector2(961, 156)
@@ -11,13 +12,36 @@ size = Vector2(961, 156)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uskgd"]
 size = Vector2(53, 87)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evltv"]
+size = Vector2(2078, 67)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evltv"]
+resource_name = "grass"
+texture = ExtResource("5_evltv")
+texture_region_size = Vector2i(64, 64)
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-22.0145, -3.95132, 24.8368, -4.51579, 32, 32, -32, 32)
+0:2/0/custom_data_0 = true
+
+[sub_resource type="TileSet" id="TileSet_cbptv"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 1
+custom_data_layer_0/name = "Damage"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_evltv")
+
 [node name="Node2D" type="Node2D"]
 
-[node name="PlayerManager" parent="." instance=ExtResource("1_crf2g")]
+[node name="PlayerManager" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("1_crf2g")]
 position = Vector2(124, 448)
+tilemap = NodePath("../Layer0")
 
 [node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(387, 555)
+position = Vector2(-601, 555)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor"]
 position = Vector2(92.5, 7.00001)
@@ -29,7 +53,7 @@ position = Vector2(92.5, 7)
 shape = SubResource("RectangleShape2D_crf2g")
 
 [node name="Floor2" type="StaticBody2D" parent="."]
-position = Vector2(461, 439)
+position = Vector2(-527, 439)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor2"]
 scale = Vector2(0.429688, 0.6875)
@@ -39,7 +63,7 @@ texture = ExtResource("3_m0s43")
 shape = SubResource("RectangleShape2D_uskgd")
 
 [node name="Floor3" type="StaticBody2D" parent="."]
-position = Vector2(28, 439)
+position = Vector2(-960, 439)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor3"]
 scale = Vector2(0.429688, 0.6875)
@@ -49,7 +73,7 @@ texture = ExtResource("3_m0s43")
 shape = SubResource("RectangleShape2D_uskgd")
 
 [node name="Floor4" type="StaticBody2D" parent="."]
-position = Vector2(930, 439)
+position = Vector2(-58, 439)
 
 [node name="Sprite2D" type="Sprite2D" parent="Floor4"]
 scale = Vector2(0.429688, 0.6875)
@@ -62,3 +86,14 @@ shape = SubResource("RectangleShape2D_uskgd")
 position = Vector2(678, 452)
 
 [node name="Hud" parent="." instance=ExtResource("4_crf2g")]
+
+[node name="Killzone" type="Area2D" parent="." groups=["spikes"]]
+position = Vector2(507, 680)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("RectangleShape2D_evltv")
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAAgAAAACAAEAAAABAAgAAAABAAEAAAACAAgAAAABAAEAAAADAAgAAAABAAEAAAAEAAgAAAABAAEAAAAFAAgAAAABAAEAAAAGAAgAAAABAAEAAAAHAAgAAAABAAEAAAAIAAgAAAABAAEAAAAJAAgAAAABAAEAAAAKAAgAAAABAAEAAAALAAgAAAABAAEAAAAMAAgAAAABAAEAAAANAAgAAAABAAEAAAAOAAgAAAABAAEAAAAAAAkAAAACAAEAAAABAAkAAAACAAEAAAACAAkAAAACAAEAAAADAAkAAAACAAEAAAAEAAkAAAACAAEAAAAFAAkAAAACAAEAAAAGAAkAAAACAAEAAAAHAAkAAAACAAEAAAAIAAkAAAACAAEAAAAJAAkAAAACAAEAAAAKAAkAAAACAAEAAAALAAkAAAACAAEAAAAMAAkAAAACAAEAAAANAAkAAAACAAEAAAAOAAkAAAACAAEAAAAOAAcAAAAAAAIAAAANAAcAAAAAAAIAAAAGAAcAAAAAAAIAAAAAAAcAAAACAAEAAAAAAAYAAAABAAEAAAAPAAcAAAACAAEAAAAPAAYAAAACAAEAAAAPAAUAAAABAAEAAAAPAAkAAAACAAEAAAAPAAgAAAACAAEAAAA=")
+tile_set = SubResource("TileSet_cbptv")

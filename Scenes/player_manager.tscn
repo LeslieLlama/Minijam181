@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://dadpawr3soiud"]
+[gd_scene load_steps=4 format=3 uid="uid://dadpawr3soiud"]
 
-[ext_resource type="Script" uid="uid://bnyycjb124oei" path="res://player_manager.gd" id="1_f6nya"]
+[ext_resource type="Script" uid="uid://bnyycjb124oei" path="res://scripts/player_manager.gd" id="1_f6nya"]
 [ext_resource type="PackedScene" uid="uid://bpjk8cxhs1jc1" path="res://Scenes/player_character.tscn" id="2_35io2"]
+[ext_resource type="Texture2D" uid="uid://bv6ipm1m86mmd" path="res://Sprites/MainRabbitIndicator.png" id="3_rrokc"]
 
 [node name="PlayerManager" type="Node2D"]
 script = ExtResource("1_f6nya")
 rabbit_prefab = ExtResource("2_35io2")
+
+[node name="MainRabbitIndicator" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -2)
+texture = ExtResource("3_rrokc")
