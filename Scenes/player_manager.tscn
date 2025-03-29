@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dadpawr3soiud"]
+
+[ext_resource type="Script" uid="uid://bnyycjb124oei" path="res://player_manager.gd" id="1_f6nya"]
+[ext_resource type="PackedScene" uid="uid://bpjk8cxhs1jc1" path="res://Scenes/player_character.tscn" id="2_35io2"]
+
+[node name="PlayerManager" type="Node2D"]
+script = ExtResource("1_f6nya")
+rabbit_prefab = ExtResource("2_35io2")

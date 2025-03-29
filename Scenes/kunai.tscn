@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://csvck2jupjv5y"]
+
+[ext_resource type="Texture2D" uid="uid://dmk3lx5pemm1t" path="res://Sprites/KunaiTest.png" id="1_2ibcj"]
+[ext_resource type="Script" uid="uid://bml3tnjoki7hl" path="res://scripts/kunai.gd" id="1_nxfn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evltv"]
+size = Vector2(62, 36)
+
+[node name="Kunai" type="Area2D"]
+script = ExtResource("1_nxfn2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, -2)
+shape = SubResource("RectangleShape2D_evltv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+rotation = 1.5708
+texture = ExtResource("1_2ibcj")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
