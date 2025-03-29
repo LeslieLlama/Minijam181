@@ -12,3 +12,7 @@ rabbit_prefab = ExtResource("2_35io2")
 texture_filter = 1
 position = Vector2(-1, -2)
 texture = ExtResource("3_rrokc")
+
+[node name="Camera2D" type="Camera2D" parent="MainRabbitIndicator"]
+position = Vector2(1, 2)
+position_smoothing_enabled = true

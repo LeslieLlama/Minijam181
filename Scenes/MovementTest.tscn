@@ -1,19 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://c4ic0ymc7cxll"]
+[gd_scene load_steps=9 format=4 uid="uid://c4ic0ymc7cxll"]
 
 [ext_resource type="PackedScene" uid="uid://dadpawr3soiud" path="res://Scenes/player_manager.tscn" id="1_crf2g"]
 [ext_resource type="PackedScene" uid="uid://csvck2jupjv5y" path="res://Scenes/kunai.tscn" id="3_crf2g"]
-[ext_resource type="Texture2D" uid="uid://dm1jyd1cnm0tg" path="res://icon.svg" id="3_m0s43"]
 [ext_resource type="PackedScene" uid="uid://cef2gk7n84dlg" path="res://Scenes/hud.tscn" id="4_crf2g"]
 [ext_resource type="Texture2D" uid="uid://d3dtchrlwwg2w" path="res://Sprites/RabbitSpritesheet.png" id="5_evltv"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_crf2g"]
-size = Vector2(961, 156)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uskgd"]
-size = Vector2(53, 87)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_evltv"]
-size = Vector2(2078, 67)
+[ext_resource type="Script" uid="uid://bxaksfdiovnd" path="res://Scenes/camera_zone.gd" id="5_vtgv7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_evltv"]
 resource_name = "grass"
@@ -34,66 +25,43 @@ custom_data_layer_0/name = "Damage"
 custom_data_layer_0/type = 1
 sources/0 = SubResource("TileSetAtlasSource_evltv")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cbptv"]
+size = Vector2(960, 640)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="PlayerManager" parent="." node_paths=PackedStringArray("tilemap") instance=ExtResource("1_crf2g")]
 position = Vector2(124, 448)
 tilemap = NodePath("../Layer0")
 
-[node name="Floor" type="StaticBody2D" parent="."]
-position = Vector2(-601, 555)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor"]
-position = Vector2(92.5, 7.00001)
-scale = Vector2(7.49219, 1.21875)
-texture = ExtResource("3_m0s43")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2(92.5, 7)
-shape = SubResource("RectangleShape2D_crf2g")
-
-[node name="Floor2" type="StaticBody2D" parent="."]
-position = Vector2(-527, 439)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor2"]
-scale = Vector2(0.429688, 0.6875)
-texture = ExtResource("3_m0s43")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor2"]
-shape = SubResource("RectangleShape2D_uskgd")
-
-[node name="Floor3" type="StaticBody2D" parent="."]
-position = Vector2(-960, 439)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor3"]
-scale = Vector2(0.429688, 0.6875)
-texture = ExtResource("3_m0s43")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor3"]
-shape = SubResource("RectangleShape2D_uskgd")
-
-[node name="Floor4" type="StaticBody2D" parent="."]
-position = Vector2(-58, 439)
-
-[node name="Sprite2D" type="Sprite2D" parent="Floor4"]
-scale = Vector2(0.429688, 0.6875)
-texture = ExtResource("3_m0s43")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor4"]
-shape = SubResource("RectangleShape2D_uskgd")
-
 [node name="Kunai" parent="." instance=ExtResource("3_crf2g")]
 position = Vector2(678, 452)
 
 [node name="Hud" parent="." instance=ExtResource("4_crf2g")]
 
-[node name="Killzone" type="Area2D" parent="." groups=["spikes"]]
-position = Vector2(507, 680)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
-shape = SubResource("RectangleShape2D_evltv")
-
 [node name="Layer0" type="TileMapLayer" parent="."]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAAAAgAAAACAAEAAAABAAgAAAABAAEAAAACAAgAAAABAAEAAAADAAgAAAABAAEAAAAEAAgAAAABAAEAAAAFAAgAAAABAAEAAAAGAAgAAAABAAEAAAAHAAgAAAABAAEAAAAIAAgAAAABAAEAAAAJAAgAAAABAAEAAAAKAAgAAAABAAEAAAALAAgAAAABAAEAAAAMAAgAAAABAAEAAAANAAgAAAABAAEAAAAOAAgAAAABAAEAAAAAAAkAAAACAAEAAAABAAkAAAACAAEAAAACAAkAAAACAAEAAAADAAkAAAACAAEAAAAEAAkAAAACAAEAAAAFAAkAAAACAAEAAAAGAAkAAAACAAEAAAAHAAkAAAACAAEAAAAIAAkAAAACAAEAAAAJAAkAAAACAAEAAAAKAAkAAAACAAEAAAALAAkAAAACAAEAAAAMAAkAAAACAAEAAAANAAkAAAACAAEAAAAOAAkAAAACAAEAAAAOAAcAAAAAAAIAAAANAAcAAAAAAAIAAAAGAAcAAAAAAAIAAAAAAAcAAAACAAEAAAAAAAYAAAABAAEAAAAPAAcAAAACAAEAAAAPAAYAAAACAAEAAAAPAAUAAAABAAEAAAAPAAkAAAACAAEAAAAPAAgAAAACAAEAAAA=")
+tile_map_data = PackedByteArray("AAAAAAgAAAACAAEAAAABAAgAAAABAAEAAAACAAgAAAABAAEAAAADAAgAAAABAAEAAAAEAAgAAAABAAEAAAAFAAgAAAABAAEAAAAGAAgAAAABAAEAAAAHAAgAAAABAAEAAAAIAAgAAAABAAEAAAAJAAgAAAABAAEAAAAKAAgAAAABAAEAAAALAAgAAAABAAEAAAAMAAgAAAABAAEAAAANAAgAAAABAAEAAAAOAAgAAAACAAEAAAAAAAkAAAACAAEAAAABAAkAAAACAAEAAAACAAkAAAACAAEAAAADAAkAAAACAAEAAAAEAAkAAAACAAEAAAAFAAkAAAACAAEAAAAGAAkAAAACAAEAAAAHAAkAAAACAAEAAAAIAAkAAAACAAEAAAAJAAkAAAACAAEAAAAKAAkAAAACAAEAAAALAAkAAAACAAEAAAAMAAkAAAACAAEAAAANAAkAAAACAAEAAAAOAAkAAAACAAEAAAAGAAcAAAAAAAIAAAAAAAcAAAACAAEAAAAAAAYAAAABAAEAAAD8/woAAAAAAAIAAAD9/woAAAAAAAIAAAD+/woAAAAAAAIAAAD//woAAAAAAAIAAAAAAAoAAAAAAAIAAAABAAoAAAAAAAIAAAACAAoAAAAAAAIAAAADAAoAAAAAAAIAAAAEAAoAAAAAAAIAAAAFAAoAAAAAAAIAAAAGAAoAAAAAAAIAAAAHAAoAAAAAAAIAAAAIAAoAAAAAAAIAAAAJAAoAAAAAAAIAAAAKAAoAAAAAAAIAAAALAAoAAAAAAAIAAAAMAAoAAAAAAAIAAAANAAoAAAAAAAIAAAAOAAoAAAAAAAIAAAAPAAoAAAAAAAIAAAAQAAoAAAAAAAIAAAARAAoAAAAAAAIAAAASAAoAAAAAAAIAAAATAAoAAAAAAAIAAAAUAAoAAAAAAAIAAAAVAAoAAAAAAAIAAAAWAAoAAAAAAAIAAAAXAAoAAAAAAAIAAAAYAAoAAAAAAAIAAAAZAAoAAAAAAAIAAAAaAAoAAAAAAAIAAAAbAAoAAAAAAAIAAAAcAAoAAAAAAAIAAAD4/woAAAAAAAIAAAD5/woAAAAAAAIAAAD6/woAAAAAAAIAAAD7/woAAAAAAAIAAAAOAAYAAAABAAEAAAAOAAcAAAACAAEAAAAPAAYAAAABAAEAAAAQAAYAAAABAAEAAAARAAYAAAABAAEAAAASAAYAAAABAAEAAAAPAAcAAAACAAEAAAAPAAgAAAACAAEAAAAPAAkAAAACAAEAAAAQAAcAAAACAAEAAAAQAAgAAAACAAEAAAAQAAkAAAACAAEAAAARAAcAAAACAAEAAAARAAgAAAACAAEAAAARAAkAAAACAAEAAAASAAcAAAACAAEAAAASAAgAAAACAAEAAAASAAkAAAACAAEAAAATAAcAAAABAAEAAAATAAgAAAACAAEAAAATAAkAAAACAAEAAAAUAAcAAAABAAEAAAAUAAgAAAACAAEAAAAUAAkAAAACAAEAAAAVAAcAAAABAAEAAAAVAAgAAAACAAEAAAAVAAkAAAACAAEAAAAWAAgAAAABAAEAAAAWAAkAAAACAAEAAAAXAAgAAAABAAEAAAAXAAkAAAACAAEAAAAYAAgAAAABAAEAAAAYAAkAAAACAAEAAAAZAAgAAAABAAEAAAAZAAkAAAACAAEAAAAaAAgAAAABAAEAAAAaAAkAAAACAAEAAAAWAAMAAAAAAAIAADAXAAMAAAAAAAIAADAYAAMAAAAAAAIAADAZAAMAAAAAAAIAADAaAAMAAAAAAAIAADAWAAIAAAACAAEAAAAXAAIAAAACAAEAAAAYAAIAAAACAAEAAAAZAAIAAAACAAEAAAAaAAIAAAACAAEAAAAWAAEAAAABAAEAAAAXAAEAAAABAAEAAAAYAAEAAAABAAEAAAAZAAEAAAABAAEAAAAaAAEAAAABAAEAAAAbAAgAAAABAAEAAAAcAAgAAAABAAEAAAAdAAgAAAABAAEAAAAbAAkAAAACAAEAAAAcAAkAAAACAAEAAAAdAAkAAAACAAEAAAAdAAoAAAAAAAIAAAAeAAoAAAAAAAIAAAAfAAoAAAAAAAIAAAAgAAoAAAAAAAIAAAAhAAoAAAAAAAIAAAAiAAoAAAAAAAIAAAAjAAoAAAAAAAIAAAD3/woAAAAAAAIAAAD2/woAAAAAAAIAAAD1/woAAAAAAAIAAAD0/woAAAAAAAIAAAAkAAoAAAAAAAIAAAAlAAoAAAAAAAIAAAAmAAoAAAAAAAIAAAA=")
 tile_set = SubResource("TileSet_cbptv")
+
+[node name="Room1" type="Node2D" parent="."]
+
+[node name="CameraZone" type="Area2D" parent="Room1"]
+script = ExtResource("5_vtgv7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room1/CameraZone"]
+position = Vector2(480, 320)
+shape = SubResource("RectangleShape2D_cbptv")
+
+[node name="Room2" type="Node2D" parent="."]
+position = Vector2(962, 0)
+
+[node name="CameraZone" type="Area2D" parent="Room2"]
+script = ExtResource("5_vtgv7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Room2/CameraZone"]
+position = Vector2(480, 320)
+shape = SubResource("RectangleShape2D_cbptv")
+
+[connection signal="body_entered" from="Room1/CameraZone" to="Room1/CameraZone" method="_on_body_entered"]
+[connection signal="body_entered" from="Room2/CameraZone" to="Room2/CameraZone" method="_on_body_entered"]

@@ -1,11 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bpjk8cxhs1jc1"]
+[gd_scene load_steps=5 format=3 uid="uid://bpjk8cxhs1jc1"]
 
 [ext_resource type="Script" uid="uid://be1ve0c6wv8n2" path="res://scripts/player_character.gd" id="1_cmdk4"]
-[ext_resource type="Texture2D" uid="uid://yr82wfm5ho1g" path="res://Sprites/RabbitTest.png" id="2_o0f8b"]
+[ext_resource type="Texture2D" uid="uid://bm47g4lf0jauk" path="res://Sprites/MediumRabbit.png" id="2_cmdk4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crf2g"]
 radius = 16.0
 height = 62.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmdk4"]
+size = Vector2(24, 22)
 
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_cmdk4")
@@ -15,7 +18,12 @@ friction = 0.2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_o0f8b")
+position = Vector2(-2, -32)
+texture = ExtResource("2_cmdk4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_crf2g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(1, -43)
+shape = SubResource("RectangleShape2D_cmdk4")

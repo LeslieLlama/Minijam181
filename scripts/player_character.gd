@@ -41,8 +41,8 @@ func _physics_process(delta):
 			if is_on_floor() == false:
 				get_parent().new_rabbit(self)
 			
-	if Input.is_action_just_released("down") and is_on_floor():
-		get_parent().new_rabbit(position)
+	#if Input.is_action_just_released("down") and is_on_floor():
+		#get_parent().new_rabbit(position)
 	if Input.is_action_just_pressed("action_2"):
 		if heldItem == null:
 			return

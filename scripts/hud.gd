@@ -1,5 +1,7 @@
 extends CanvasLayer
 
+#font is from here: https://www.dafont.com/dogica.font
+
 func _ready() -> void:
 	Signals.update_ui.connect(_update_ui)
 
