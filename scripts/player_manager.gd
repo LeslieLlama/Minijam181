@@ -6,7 +6,7 @@ var max_players = 4
 @export var tilemap : TileMapLayer
 @export var rabbit_prefab : PackedScene 
 var cam
-
+var previous_room : Area2D
 var lives = 3
 
 func _ready() -> void:
@@ -29,7 +29,7 @@ func new_rabbit(summoning_rabbit : Node2D):
 	if summoning_rabbit != main_rabbit:
 		return
 	var new_rab = rabbit_prefab.instantiate()
-	new_rab.global_position = Vector2(summoning_rabbit.position.x-20, summoning_rabbit.position.y)
+	new_rab.global_position = Vector2(summoning_rabbit.position.x+20, summoning_rabbit.position.y)
 	new_rab.tilemap = tilemap
 	add_child(new_rab)
 	active_players.append(new_rab)
@@ -99,3 +99,12 @@ func _on_new_room_entered(area: Area2D, rabbit : Node2D) -> void:
 	
 	cam.limit_bottom = cam.limit_top + size.y
 	cam.limit_right = cam.limit_left + size.x
+	var varb = 0
+	for b in active_players:
+		if b != main_rabbit:
+			#rabbit_death(b)
+			b.position = Vector2(main_rabbit.position.x+varb, main_rabbit.position.y)
+			varb += 20
+			
+	
+	

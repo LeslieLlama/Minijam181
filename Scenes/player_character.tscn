@@ -1,7 +1,133 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpjk8cxhs1jc1"]
+[gd_scene load_steps=21 format=3 uid="uid://bpjk8cxhs1jc1"]
 
 [ext_resource type="Script" uid="uid://be1ve0c6wv8n2" path="res://scripts/player_character.gd" id="1_cmdk4"]
-[ext_resource type="Texture2D" uid="uid://bm47g4lf0jauk" path="res://Sprites/MediumRabbit.png" id="2_cmdk4"]
+[ext_resource type="Texture2D" uid="uid://ctlcrxssp6anj" path="res://Sprites/RabbitAnimations_Knife.png" id="2_o0f8b"]
+[ext_resource type="PackedScene" uid="uid://csvck2jupjv5y" path="res://Scenes/kunai.tscn" id="2_wko77"]
+[ext_resource type="Texture2D" uid="uid://q4v8ulumqjg0" path="res://Sprites/RabbitAnimations_NoKnife.png" id="3_wko77"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pb3n0"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ons1q"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o0f8b"]
+atlas = ExtResource("3_wko77")
+region = Rect2(256, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wko77"]
+atlas = ExtResource("3_wko77")
+region = Rect2(0, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajo0r"]
+atlas = ExtResource("3_wko77")
+region = Rect2(128, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6m2el"]
+atlas = ExtResource("3_wko77")
+region = Rect2(256, 384, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flf3p"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fcng2"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(256, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q5hbr"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(0, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w775p"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(128, 256, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4pbxa"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ews8v"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12ptb"]
+atlas = ExtResource("2_o0f8b")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6m2el"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pb3n0")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ons1q")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o0f8b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wko77")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajo0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6m2el")
+}],
+"loop": true,
+"name": &"double_jump",
+"speed": 11.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flf3p")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fcng2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q5hbr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w775p")
+}],
+"loop": true,
+"name": &"running",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4pbxa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ews8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12ptb")
+}],
+"loop": false,
+"name": &"throw",
+"speed": 8.0
+}]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crf2g"]
 radius = 16.0
@@ -15,11 +141,15 @@ script = ExtResource("1_cmdk4")
 speed = 600
 jump_speed = -1000
 friction = 0.2
+knife_prefab = ExtResource("2_wko77")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-2, -32)
-texture = ExtResource("2_cmdk4")
+sprite_frames = SubResource("SpriteFrames_6m2el")
+animation = &"throw"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_crf2g")

@@ -15,4 +15,7 @@ texture = ExtResource("3_rrokc")
 
 [node name="Camera2D" type="Camera2D" parent="MainRabbitIndicator"]
 position = Vector2(1, 2)
+limit_smoothed = true
 position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+drag_horizontal_enabled = true
