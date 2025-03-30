@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bpjk8cxhs1jc1"]
+[gd_scene load_steps=20 format=3 uid="uid://bpjk8cxhs1jc1"]
 
 [ext_resource type="Script" uid="uid://be1ve0c6wv8n2" path="res://scripts/player_character.gd" id="1_cmdk4"]
 [ext_resource type="Texture2D" uid="uid://ctlcrxssp6anj" path="res://Sprites/RabbitAnimations_Knife.png" id="2_o0f8b"]
@@ -129,12 +129,8 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crf2g"]
-radius = 16.0
-height = 62.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmdk4"]
-size = Vector2(24, 22)
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_wko77"]
+points = PackedVector2Array(-17.4636, 61.1195, 17.4707, -0.699497, -9.73012, -15.5694, -45.1441, 47.1271, -44.5124, 54.3105, -37.2588, 63.9741, -25.2085, 64.8633)
 
 [node name="PlayerCharacter" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_cmdk4")
@@ -151,9 +147,8 @@ animation = &"throw"
 frame = 2
 frame_progress = 1.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_crf2g")
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
-position = Vector2(1, -43)
-shape = SubResource("RectangleShape2D_cmdk4")
+position = Vector2(2.0059, -43.006)
+rotation = -0.500283
+shape = SubResource("ConvexPolygonShape2D_wko77")
+one_way_collision_margin = 0.0

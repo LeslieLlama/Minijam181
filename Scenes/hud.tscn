@@ -21,14 +21,15 @@ offset_bottom = 65.0
 theme = ExtResource("1_e0onf")
 text = "Rabbits : 1/4"
 
-[node name="Lives_Label" type="Label" parent="."]
+[node name="Title_label" type="Label" parent="."]
 texture_filter = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -320.0
-offset_top = 6.0
-offset_bottom = 34.0
+offset_left = -659.0
+offset_top = 119.0
+offset_right = -275.0
+offset_bottom = 147.0
 grow_horizontal = 0
 theme = ExtResource("1_e0onf")
-text = "Lives : 0x"
+text = "Mirror Blade"

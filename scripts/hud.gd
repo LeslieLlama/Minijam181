@@ -7,4 +7,4 @@ func _ready() -> void:
 
 func _update_ui(rabbits, lives):
 	$Rabbits_Label.text = str("Rabbits : ",rabbits,"/4")
-	$Lives_Label.text = str("Lives : ",lives,"x")
+	#$Lives_Label.text = str("Lives : ",lives,"x")

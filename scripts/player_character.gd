@@ -67,6 +67,9 @@ func _physics_process(delta):
 	else:
 		velocity.x = lerp(velocity.x, 0.0, friction)
 		
+	if Input.is_action_just_pressed("down") and is_on_floor():
+		position.y += 1
+		
 	
 	if Input.is_action_just_pressed("action_1"):
 		if current_jumps < max_jumps:

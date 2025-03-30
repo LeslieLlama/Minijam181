@@ -9,10 +9,14 @@ var cam
 var previous_room : Area2D
 var lives = 3
 
+var new_area : Area2D
+var current_area : Area2D
+
 func _ready() -> void:
 	inital_spawn(Vector2(40,0))
 	assign_rabbit_positions()
 	Signals.new_room_entered.connect(_on_new_room_entered)
+	Signals.room_exited.connect(_on_room_exited)
 	cam = $MainRabbitIndicator/Camera2D
 	
 func inital_spawn(position_to_spawn : Vector2):
@@ -83,7 +87,31 @@ func life_lost():
 func _on_new_room_entered(area: Area2D, rabbit : Node2D) -> void:
 	if rabbit != main_rabbit:
 		return
-	var collision_shape = area.get_node("CollisionShape2D")
+	new_area = area
+	#set camera bounds on inital spawn in
+	if current_area == null:
+		_set_cam(area)
+	
+func _on_room_exited(area: Area2D, rabbit : Node2D):
+	if new_area == null:
+		return
+	if rabbit != main_rabbit:
+		return
+	if area == new_area:
+		return
+	_set_cam(area)
+	var varb = 0
+	for b in active_players:
+		if b != main_rabbit:
+			#rabbit_death(b)
+			b.position = Vector2(main_rabbit.position.x+varb, main_rabbit.position.y)
+			varb += 20
+	current_area = new_area
+	new_area = null
+	
+	
+func _set_cam(area: Area2D):
+	var collision_shape = new_area.get_node("CollisionShape2D")
 	var size = collision_shape.shape.extents*2
 	
 	#for if room is smaller than viewport size
@@ -99,12 +127,3 @@ func _on_new_room_entered(area: Area2D, rabbit : Node2D) -> void:
 	
 	cam.limit_bottom = cam.limit_top + size.y
 	cam.limit_right = cam.limit_left + size.x
-	var varb = 0
-	for b in active_players:
-		if b != main_rabbit:
-			#rabbit_death(b)
-			b.position = Vector2(main_rabbit.position.x+varb, main_rabbit.position.y)
-			varb += 20
-			
-	
-	

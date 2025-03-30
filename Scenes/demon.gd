@@ -36,6 +36,10 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):
 		is_active = true
 
+func _on_detection_area_body_exited(body: Node2D) -> void:
+	if body.is_in_group("player"):
+		is_active = false
+
 func _jump():
 	if is_active == false:
 		return
