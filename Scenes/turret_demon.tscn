@@ -1,0 +1,81 @@
+[gd_scene load_steps=14 format=3 uid="uid://c0i7lt6vhmbql"]
+
+[ext_resource type="PackedScene" uid="uid://b0dffbsmbjirk" path="res://Scenes/demon.tscn" id="1_ol18k"]
+[ext_resource type="Shader" uid="uid://bsdkm426s2e25" path="res://Scenes/demon.tres" id="2_cijyf"]
+[ext_resource type="Script" uid="uid://brfhpvn8ex0w3" path="res://scripts/turret_demon.gd" id="2_oa2j8"]
+[ext_resource type="Texture2D" uid="uid://bxdisfw6lngp1" path="res://Sprites/TurretDemon.png" id="3_oa2j8"]
+[ext_resource type="PackedScene" uid="uid://dpm5fsiaq3msg" path="res://Scenes/bullet.tscn" id="3_ubdty"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ubdty"]
+resource_local_to_scene = true
+shader = ExtResource("2_cijyf")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jp5nr"]
+atlas = ExtResource("3_oa2j8")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agxrn"]
+atlas = ExtResource("3_oa2j8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_coqsy"]
+atlas = ExtResource("3_oa2j8")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cb24s"]
+atlas = ExtResource("3_oa2j8")
+region = Rect2(0, 128, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gir08"]
+atlas = ExtResource("3_oa2j8")
+region = Rect2(128, 128, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_agwk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jp5nr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agxrn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_coqsy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cb24s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gir08")
+}],
+"loop": true,
+"name": &"fire",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa2j8"]
+size = Vector2(1316, 640)
+
+[node name="Turret_Demon" instance=ExtResource("1_ol18k")]
+script = ExtResource("2_oa2j8")
+bullet_prefab = ExtResource("3_ubdty")
+health = 5
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_ubdty")
+sprite_frames = SubResource("SpriteFrames_agwk0")
+frame_progress = 0.0
+
+[node name="Timer" parent="." index="3"]
+wait_time = 2.0
+
+[node name="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_oa2j8")

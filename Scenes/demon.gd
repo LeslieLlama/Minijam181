@@ -1,8 +1,7 @@
 extends RigidBody2D
 
-
-var health = 3
-
+class_name demon
+@export var health = 3
 var animated_sprite : AnimatedSprite2D
 var movement_direction : Vector2
 
@@ -48,10 +47,17 @@ func _jump():
 	
 func _check_death():
 	if health <= 0:
-		
 		collision_layer = 0b00000000_00000000_00000000_00000000
 		collision_mask = 0b00000000_00000000_00000000_00000000
+		$CollisionShape2D.disabled = true
+		$Hitbox/CollisionShape2D.disabled = true
 		$AnimatedSprite2D.flip_v = true
 		await get_tree().create_timer(1).timeout
 		queue_free()
-	
+		
+
+
+#func _on_visible_on_screen_notifier_2d_screen_entered() -> void:
+	#is_active = true
+#func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	#is_active = false
