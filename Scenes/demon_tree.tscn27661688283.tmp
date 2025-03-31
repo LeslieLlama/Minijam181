@@ -1,0 +1,69 @@
+[gd_scene load_steps=13 format=3 uid="uid://dhggy5v3yy4iy"]
+
+[ext_resource type="PackedScene" uid="uid://b0dffbsmbjirk" path="res://Scenes/demon.tscn" id="1_6woyq"]
+[ext_resource type="Shader" uid="uid://bsdkm426s2e25" path="res://Scenes/demon.tres" id="2_4io7y"]
+[ext_resource type="Script" uid="uid://drj46eb1nhflg" path="res://scripts/demon_tree.gd" id="2_d34qf"]
+[ext_resource type="PackedScene" uid="uid://dkl1kvsdyv57h" path="res://scripts/bouncing_bullet.tscn" id="3_4vsra"]
+[ext_resource type="Texture2D" uid="uid://b8wxrpj5s57lh" path="res://Sprites/DemonTree.png" id="3_d34qf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4vsra"]
+resource_local_to_scene = true
+shader = ExtResource("2_4io7y")
+shader_parameter/Enabled = false
+shader_parameter/Tint = Color(1, 1, 1, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fdxw5"]
+atlas = ExtResource("3_d34qf")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5kp0"]
+atlas = ExtResource("3_d34qf")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0vjkq"]
+atlas = ExtResource("3_d34qf")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eym2t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fdxw5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5kp0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0vjkq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5kp0")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fa2ct"]
+size = Vector2(124, 215)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4io7y"]
+size = Vector2(1616, 640)
+
+[node name="Demon" instance=ExtResource("1_6woyq")]
+script = ExtResource("2_d34qf")
+bullet_prefab = ExtResource("3_4vsra")
+health = 20
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+material = SubResource("ShaderMaterial_4vsra")
+sprite_frames = SubResource("SpriteFrames_eym2t")
+frame_progress = 0.737472
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(3, 20.5)
+shape = SubResource("RectangleShape2D_fa2ct")
+
+[node name="CollisionShape2D" parent="DetectionArea" index="0"]
+position = Vector2(620, 0)
+shape = SubResource("RectangleShape2D_4io7y")

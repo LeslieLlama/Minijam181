@@ -33,3 +33,93 @@ offset_bottom = 147.0
 grow_horizontal = 0
 theme = ExtResource("1_e0onf")
 text = "Mirror Blade"
+
+[node name="RestartText" type="Label" parent="."]
+visible = false
+texture_filter = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -801.0
+offset_top = 182.0
+offset_right = -129.0
+offset_bottom = 210.0
+grow_horizontal = 0
+theme = ExtResource("1_e0onf")
+text = "Press Jump to Restart"
+
+[node name="GameOverPanel" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.12549, 0.2, 0.309804, 1)
+
+[node name="Title_label" type="Label" parent="GameOverPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -860.0
+offset_top = 129.0
+offset_right = -156.0
+offset_bottom = 188.0
+grow_horizontal = 0
+theme = ExtResource("1_e0onf")
+text = "You Defeated the Coral
+Demon Scourge"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title_label2" type="Label" parent="GameOverPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -947.0
+offset_top = 252.0
+offset_right = -51.0
+offset_bottom = 311.0
+grow_horizontal = 0
+theme = ExtResource("1_e0onf")
+text = "The lands are safe 
+once more"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title_label3" type="Label" parent="GameOverPanel"]
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -935.0
+offset_top = 476.0
+offset_right = -39.0
+offset_bottom = 535.0
+grow_horizontal = 0
+theme = ExtResource("1_e0onf")
+text = "Thank you for playing"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title_label4" type="Label" parent="GameOverPanel"]
+modulate = Color(0.396889, 0.396889, 0.396889, 1)
+texture_filter = 1
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -929.0
+offset_top = 576.0
+offset_right = -33.0
+offset_bottom = 635.0
+grow_horizontal = 0
+theme = ExtResource("1_e0onf")
+text = "A Game by LeslieLlama"
+horizontal_alignment = 1
+vertical_alignment = 1

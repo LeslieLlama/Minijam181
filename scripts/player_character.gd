@@ -118,8 +118,9 @@ func external_death():
 	animated_sprite.play("death")
 	collision_layer = 0b00000000_00000000_00000000_00000000
 	collision_mask = 0b00000000_00000000_00000000_00000000
-	await get_tree().create_timer(1).timeout
 	get_parent().rabbit_death(self)
+	
+
 	
 	
 	

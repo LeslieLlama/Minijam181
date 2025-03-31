@@ -1,6 +1,12 @@
 extends Area2D
 
-var movementDirection : Vector2 = Vector2(-1,0)
+class_name bullet
+var invincible = true
+@export var movementDirection : Vector2 = Vector2(-1,0)
+
+func _ready() -> void:
+	await get_tree().create_timer(0.2).timeout
+	invincible = false
 
 func _process(delta: float) -> void:
 	position += movementDirection
@@ -10,7 +16,6 @@ func _on_body_entered(body: Node2D) -> void:
 		body.external_death()
 		queue_free()
 	else:
+		if invincible == true:
+			return
 		queue_free()
-
-func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	queue_free()

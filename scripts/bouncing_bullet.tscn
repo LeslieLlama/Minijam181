@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://dkl1kvsdyv57h"]
+
+[ext_resource type="PackedScene" uid="uid://dpm5fsiaq3msg" path="res://Scenes/bullet.tscn" id="1_d8vrf"]
+[ext_resource type="Script" uid="uid://d0v67txg1ey3q" path="res://scripts/bouncing_bullet.gd" id="2_m6j3g"]
+[ext_resource type="Texture2D" uid="uid://b8wxrpj5s57lh" path="res://Sprites/DemonTree.png" id="3_708l2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d8vrf"]
+radius = 32.0
+
+[node name="Bullet" instance=ExtResource("1_d8vrf")]
+script = ExtResource("2_m6j3g")
+movementDirection = Vector2(1, 1)
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_d8vrf")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("3_708l2")
+region_enabled = true
+region_rect = Rect2(332, 348, 88, 92)

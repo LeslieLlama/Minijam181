@@ -49,10 +49,10 @@ radius = 26.0
 height = 58.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fiwpc"]
-size = Vector2(76, 99)
+size = Vector2(76, 106)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_li3uk"]
-size = Vector2(959, 640)
+size = Vector2(1398.25, 400)
 
 [node name="Demon" type="RigidBody2D"]
 lock_rotation = true
@@ -73,7 +73,7 @@ shape = SubResource("CapsuleShape2D_irc8b")
 [node name="Hitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-position = Vector2(2, 11.5)
+position = Vector2(2, 15)
 shape = SubResource("RectangleShape2D_fiwpc")
 
 [node name="Timer" type="Timer" parent="."]
@@ -85,6 +85,7 @@ target_position = Vector2(-59, 0)
 [node name="DetectionArea" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DetectionArea"]
+position = Vector2(1, -133)
 shape = SubResource("RectangleShape2D_li3uk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]

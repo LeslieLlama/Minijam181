@@ -61,7 +61,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oa2j8"]
-size = Vector2(1316, 640)
+size = Vector2(1316, 411)
 
 [node name="Turret_Demon" instance=ExtResource("1_ol18k")]
 script = ExtResource("2_oa2j8")
@@ -77,5 +77,5 @@ frame_progress = 0.0
 wait_time = 2.0
 
 [node name="CollisionShape2D" parent="DetectionArea" index="0"]
-position = Vector2(1, 0)
+position = Vector2(1, -114.5)
 shape = SubResource("RectangleShape2D_oa2j8")

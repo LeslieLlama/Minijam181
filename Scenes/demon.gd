@@ -3,14 +3,13 @@ extends RigidBody2D
 class_name demon
 @export var health = 3
 var animated_sprite : AnimatedSprite2D
-var movement_direction : Vector2
+@export var movement_direction : Vector2 = Vector2.LEFT
 
-var is_active : bool = false
+@export var is_active : bool = false
 
 func _ready() -> void:
 	animated_sprite = $AnimatedSprite2D
 	animated_sprite.play()
-	movement_direction = Vector2.LEFT
 	
 
 func _process(delta: float) -> void:

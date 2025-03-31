@@ -46,7 +46,6 @@ func assign_rabbit_positions():
 	
 func rabbit_death(rabbit : Node2D):
 	var place = active_players.find(rabbit)
-	rabbit.queue_free()
 	active_players.pop_at(place)
 	#await get_tree().create_timer(0.1).timeout
 	Signals.emit_signal("update_ui", active_players.size(), 1)
@@ -54,6 +53,8 @@ func rabbit_death(rabbit : Node2D):
 		life_lost()
 	else:
 		assign_rabbit_positions()
+	await get_tree().create_timer(1).timeout
+	rabbit.queue_free()
 	
 func _process(delta: float) -> void:
 	if main_rabbit != null:
@@ -80,7 +81,7 @@ func _physics_process(delta: float) -> void:
 		assign_rabbit_positions()
 
 func life_lost():
-	pass
+	Signals.emit_signal("game_over")
 	
 
 
